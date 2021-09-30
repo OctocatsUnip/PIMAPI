@@ -4,7 +4,7 @@
 module.exports = {
 
     dialect: 'mssql',
-    host: 'localhost',
+    host: '192.168.1.101',
     port: '1433',
     username: 'pim',
     password: 'kanimamithaca2021',
