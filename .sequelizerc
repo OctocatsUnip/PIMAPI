@@ -1,0 +1,10 @@
+const path = require('path'); //importanto path do node para lidar com os caminhos
+
+//resolve vai passando pasta por pasta para o caminho de encontro
+//aqui estamos passando as credenciais que estão no projeto para o sequelize poder utilizá-las
+module.exports = {
+    config: path.resolve(__dirname, 'src', 'config', 'database.js'),
+    //dizendo ao sequelize onde ele guardará as migrations
+    //exem para passar comandos as migrations no terminal: migration:create --name=create-clients (para criar tabela)
+    'migrations-path': path.resolve(__dirname, 'src', 'database', 'migrations'),
+};
