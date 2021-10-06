@@ -18,9 +18,9 @@
     "paths":{
         "/quartos":{
             "post":{
-               "summary" : "Cadastro de Quarto",
-               "description": "Rota para cadastro de quarto",
-               "tags": ["Bedrooms"],
+               "summary" : "Cadastro de Pessoa",
+               "description": "Rota para cadastro de pessoa",
+               "tags": ["People"],
                "requestBody":{
                    "content": {
                        "application/json":{

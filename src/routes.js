@@ -1,10 +1,14 @@
 //arquivo de criação de rotas e requisições
 const express = require('express');
-const Bedrooms = require('./controllers/BedroomsController');
+
+const PessoaController = require('./controllers/PessoaController');
+const EnderecoController = require('./controllers/EnderecoController');
 
 const routes = express.Router();
 
-routes.get('/quartos', Bedrooms.index);
-routes.post('/quartos', Bedrooms.store);
+routes.get('/pessoa', PessoaController.index);
+routes.post('/pessoa', PessoaController.store);
+
+routes.post('pessoa/:pessoa_id/endereco', EnderecoController.store);
 
 module.exports = routes;
