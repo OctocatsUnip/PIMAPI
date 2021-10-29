@@ -7,8 +7,13 @@ class Endereco extends Model{
             rua: DataTypes.STRING,
             number: DataTypes.INTEGER,
         }, {
-            sequelize //sequelize: connection
+            sequelize, //sequelize: connection
+            freezeTableName : true
         })
+    }
+
+    static associate(models){
+        this.belongsTo(models.Pessoa, {foreignKey: 'pessoa_id', as: 'owner'}); //enderco pertence a model pessoa, e passamos qual a Fk que referencia a tabela de Pessoa, as é o nome que vc quiser dar para o relacionamento
     }
 }
 

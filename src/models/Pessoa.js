@@ -10,8 +10,13 @@ class Pessoa extends Model{
             sexo: DataTypes.STRING,
             email: DataTypes.STRING
         }, {
-            sequelize //sequelize: connection
+            sequelize,//sequelize: connection
+            freezeTableName : true
         })
+    }
+
+    static associate(models){
+        this.hasMany(models.Endereco, {foreignKey: 'pessoa_id', as: 'adresses'}); //fazemos a associacao de que uma pessoa possui muitos enderecos
     }
 }
 

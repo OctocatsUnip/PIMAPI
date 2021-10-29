@@ -1,7 +1,19 @@
 const Endereco = require("../models/Endereco");
 const Pessoa = require("../models/Pessoa");
+const { index } = require("./PessoaController");
 
 module.exports = {
+
+    async index(req, res){
+        const {pessoa_id} = req.params;
+
+        const pessoa = await Pessoa.findByPk(pessoa_id, {
+            include: {association: 'adresses'} //aqui passa a associaçã que o sequelize deve executar - essa associação criamos na model
+        });
+
+        return res.json(pessoa);
+    },
+
     async store(req, res){
         try{
          
@@ -14,7 +26,7 @@ module.exports = {
             return res.status(400).json({error: 'person not found'});
         }
 
-        const endereco = await Endereco.Create({
+        const endereco = await Endereco.create({
             cep,
             rua,
             number,

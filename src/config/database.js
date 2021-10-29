@@ -4,11 +4,11 @@
 module.exports = {
 
     dialect: 'mssql',
-    host: '192.168.1.101',
-    port: '1433',
-    username: 'pim',
-    password: 'kanimamithaca2021',
-    database: 'PIM',
+    host: 'srvpreprod1.novasingular.com.br',
+    // port: '1433',
+    username: 'sa',
+    password: 'gjP2bu845ZNnZySYv9J9fnL4T',
+    database: 'Thay',
     define:{
         timestamps: true, //criação dos registros no banco de quando foi realizado alteração
         underscored: true //para transformação de possiveis frases "exemplo_traco" em "exemploTraco"
