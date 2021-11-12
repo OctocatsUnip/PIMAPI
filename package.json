@@ -10,7 +10,8 @@
     "express": "^4.17.1",
     "sequelize": "^6.6.5",
     "swagger-ui-express": "^4.1.6",
-    "tedious": "^12.2.0"
+    "tedious": "^12.2.0",
+    "yarn": "^1.22.17"
   },
   "devDependencies": {
     "nodemon": "^2.0.13",

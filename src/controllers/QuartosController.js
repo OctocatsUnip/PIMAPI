@@ -2,7 +2,7 @@ const Quartos = require('../models/Quartos');
 const { index, store } = require('./PessoaController');
 
 module.exports = {
-    
+
     async index(req, res){
         try{
 
@@ -16,9 +16,17 @@ module.exports = {
 
     async store(req, res){
 
-        const { nome_quarto, valor_quarto, quantia_camas, quantia_banheiros, img_quarto} = req.body;
+        const { Nome_quarto, Valor_quarto, Quantia_camas, Quantia_banheiros, Img_quarto} = req.body;
+
+        const [nome_quarto, valor_quarto, quantia_camas, quantia_banheiros, img_quarto] = [Nome_quarto, Valor_quarto, Quantia_camas, Quantia_banheiros, Img_quarto];
+
+        // console.log("Merda 2:", req.body);
 
         try{
+
+            // const quarto_print = {nome_quarto, valor_quarto, quantia_camas, quantia_banheiros, img_quarto};
+            // console.log("Aqui está essa merda:", quarto_print);
+
             const quarto = await Quartos.create({nome_quarto, valor_quarto, quantia_camas, quantia_banheiros, img_quarto});
             return res.json(quarto);
         }catch(err){
