@@ -17,6 +17,7 @@ class Pessoa extends Model{
 
     static associate(models){
         this.hasMany(models.Endereco, {foreignKey: 'pessoa_id', as: 'adresses'}); //fazemos a associacao de que uma pessoa possui muitos enderecos
+        this.hasMany(models.Telefones, {foreignKey: 'pessoa_id', as: 'phone'}); //fazemos a associacao de que uma pessoa possui muitos enderecos
     }
 }
 

@@ -13,7 +13,7 @@ class Endereco extends Model{
     }
 
     static associate(models){
-        this.belongsTo(models.Pessoa, {foreignKey: 'pessoa_id', as: 'owner'}); //enderco pertence a model pessoa, e passamos qual a Fk que referencia a tabela de Pessoa, as é o nome que vc quiser dar para o relacionamento
+        this.belongsTo(models.Pessoa, {foreignKey: 'pessoa_id', as: 'owner'}); //enderco pertence a model pessoa, e passamos qual a Fk que referencia a tabela de Pessoa, mas é o nome que vc quiser dar para o relacionamento
     }
 }
 
