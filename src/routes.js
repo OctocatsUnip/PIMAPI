@@ -10,6 +10,8 @@ const PratosController = require('./controllers/PratosController');
 const ListaPedidosComidaController = require('./controllers/ListaPedidosComidaController');
 const ListaPedidosServicosController = require('./controllers/ListaPedidosServicosController');
 const CargosController = require('./controllers/CargosController');
+const BeneficiosController = require('./controllers/BeneficiosController');
+const UsuarioSistemaController = require('./controllers/UsuarioSistemaController');
 
 const routes = express.Router();
 
@@ -39,5 +41,11 @@ routes.post('/lista_pedidos_servicos', ListaPedidosServicosController.store);
 
 routes.get('/cargos', CargosController.index);
 routes.post('/cargos', CargosController.store);
+
+routes.get('/beneficios', BeneficiosController.index);
+routes.post('/beneficios', BeneficiosController.store);
+
+routes.get('/cargos/:cargo_id/usuario_sistema', UsuarioSistemaController.index);
+routes.post('/cargos/:cargo_id/usuario_sistema', UsuarioSistemaController.store);
 
 module.exports = routes;

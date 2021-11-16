@@ -10,9 +10,9 @@ class Cargos extends Model {
         })
     }
 
-    // static associate(models){
-    //     this.hasMany(models.Endereco, {foreignKey: 'pessoa_id', as: 'adresses'}); //fazemos a associacao de que uma pessoa possui muitos enderecos
-    // }
+    static associate(models){
+        this.hasMany(models.UsuarioSistema, {primaryKey: 'cargo_id', as: 'cargo_owner'}); //fazemos a associacao de que uma pessoa possui muitos enderecos
+    }
 }
 
 module.exports = Cargos;
