@@ -16,13 +16,6 @@ module.exports = {
         onUpdate: 'CASCADE', //sempre que houver alguma alteração na tabela/campo que está se relacionando ocorrerá um efeito cascata e esse campo será atualizado
         onDelete: 'CASCADE', //poderiamos restringir (restrict) esse campo para que a tabela pessoa não possa ser deletada quando a endereco tiver algum registro. No caso do cascade, caso uma pessoa seja deletada, seu endereço também será
       },
-      usuario_sistema_id: {
-        type: Sequelize.INTEGER,
-        allowNull: false,
-        references: { model: 'usuario_sistema', key: 'id' }, //criacao da chave estrangeira
-        onUpdate: 'CASCADE', //sempre que houver alguma alteração na tabela/campo que está se relacionando ocorrerá um efeito cascata e esse campo será atualizado
-        onDelete: 'CASCADE', //poderiamos restringir (restrict) esse campo para que a tabela pessoa não possa ser deletada quando a endereco tiver algum registro. No caso do cascade, caso uma pessoa seja deletada, seu endereço também será
-      },
       cargo_id: {
         type: Sequelize.INTEGER,
         allowNull: false,

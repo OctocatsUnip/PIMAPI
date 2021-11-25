@@ -11,8 +11,8 @@ class UsuarioSistema extends Model{
         })
     }
 
-    static associate(models){
-        this.belongsTo(models.Cargos, {foreignKey: 'cargo_id', as: 'cargo_owner'});
+    static associate(models){        
+        this.belongsTo(models.Funcionarios, {foreignKey: 'funcionario_id', as: 'funcionario_owner'});
     }
 }
 

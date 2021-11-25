@@ -11,7 +11,7 @@ class Cargos extends Model {
     }
 
     static associate(models){
-        this.hasMany(models.UsuarioSistema, {primaryKey: 'cargo_id', as: 'cargo_owner'}); //fazemos a associacao de que uma pessoa possui muitos enderecos
+        this.hasMany(models.Funcionarios, {primaryKey: 'funcionario_id', as: 'funcionario_owner'}); //fazemos a associacao de que uma pessoa possui muitos enderecos
     }
 }
 

@@ -12,9 +12,9 @@ class Funcionarios extends Model{
     }
 
     static associate(models){
-        this.belongsTo(models.Pessoa, {foreignKey: 'pessoa_id', as: 'pessoa_owner'});
-        this.belongsTo(models.UsuarioSistema, {foreignKey: 'usuario_sistema_id', as: 'usuario_sistema_owner'});
+        this.belongsTo(models.Pessoa, {foreignKey: 'pessoa_id', as: 'pessoa_owner'});        
         this.belongsTo(models.Cargos, {foreignKey: 'cargo_id', as: 'cargo_owner'});
+        this.hasOne(models.UsuarioSistema, {foreignKey: 'usuario_sistema_id', as: 'usuario_sistema_owner'});
     }
 }
 
