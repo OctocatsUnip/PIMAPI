@@ -1,92 +1,445 @@
 {
-    "openapi": "3.0.3",
-    "info":{
-        "title": "API - Hotel Management",
-        "description": "CRUD, DDL e MDL entre banco MSSQL com auxílio do sequalize para consumo em diferentes plataformas",
-        "termsOfService": "Null",
-        "contact":{
-            "email": "OctocatsUnip@gmail.com"
-        },
-        "version": "1.0.0"
+  "swagger": "2.0",
+  "info":{
+    "title": "API - Hotel Management",
+    "description": "CRUD, DDL e MDL entre banco MSSQL com auxílio do sequalize para consumo em diferentes plataformas",
+    "termsOfService": "Null",
+    "contact":{
+        "email": "OctocatsUnip@gmail.com"
     },
-    "servers": [
-        {
-            "url": "http://localhost:5000",
-            "description": "API dev"
-        }
-    ],
-    "paths":{
-        "/quartos":{
-            "post":{
-               "summary" : "Cadastro de Pessoa",
-               "description": "Rota para cadastro de pessoa",
-               "tags": ["People"],
-               "requestBody":{
-                   "content": {
-                       "application/json":{
-                           "schema": {
-                                "$ref": "#/components/schemas/Bedroom"
-                           },
-                           "examples": {
-                                "bedroom" : {
-                                    "value":{
-                                        "valor": 950,
-                                        "numBed": 1
-                                    }
-                                }
-                           }
-                       }
-                   }
-               },
-               "responses": {
-                   "200":{
-                       "description": "OK",
-                       "content": {
-                           "application/json":{
-                               "schema":{
-                                "type": "object",
-                                "$ref": "#/components/schemas/Bedroom"
-                               }
-                           }
-                       }
-                   }
-               }
-            },
-            "get": {
-                "summary": "Lista de quartos",
-                "description": "Listagem de todos os quartos do banco",
-                "tags": ["Bedrooms"],
-                "responses": {
-                    "200":{
-                        "description": "OK",
-                        "content": {
-                            "application/json":{
-                                "schema":{
-                                 "type": "array",
-                                 "items":{
-                                    "$ref": "#/components/schemas/Bedroom"
-                                 }
-                                }
-                            }
-                        }
+    "version": "1.0.0"
+},
+  "host": "localhost:5000",
+  "basePath": "/docs",
+  "tags": [],
+  "schemes": [
+    "http"
+  ],
+  "consumes": [],
+  "produces": [],
+  "paths": {
+    "/pessoa": {
+      "get": {
+        "tags": [],
+        "description": "",
+        "parameters": [],
+        "responses": {}
+      },
+      "post": {
+        "tags": [],
+        "description": "",
+        "parameters": [
+          {
+            "name": "obj",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "nome_pessoa": {
+                  "example": "any"
+                },
+                "rg": {
+                  "example": "any"
+                },
+                "cpf": {
+                  "example": "any"
+                },
+                "dt_nascimento": {
+                  "example": "any"
+                },
+                "sexo": {
+                  "example": "any"
+                },
+                "email": {
+                  "example": "any"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {}
+      }
+    },
+    "/pessoa/endereco/{pessoa_id}": {
+      "get": {
+        "tags": [],
+        "description": "",
+        "parameters": [
+          {
+            "name": "pessoa_id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200":{
+            "description": "OK",
+            "content": {
+                "application/json":{
+                    "schema":{
+                      "type": "array",
+                      "items":{
+                        "$ref": "#/components/schemas/PessoaEndereco"
+                     }
                     }
                 }
             }
         }
+        }
+      },
+      "post": {
+        "tags": [],
+        "description": "",
+        "parameters": [
+          {
+            "name": "pessoa_id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "obj",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "cep": {
+                  "example": "any"
+                },
+                "rua": {
+                  "example": "any"
+                },
+                "number": {
+                  "example": "any"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "400": {
+            "description": "Bad Request"
+          }
+        }
+      }
     },
-    "components":{
-        "schemas":{
-            "Bedroom":{
-                "type": "object",
-                "properties": {
-                    "valor": {
-                        "type": "number"
-                    },
-                    "numBed": {
-                        "type": "number"
-                    }
+    "/pessoa/{pessoa_id}/telefones": {
+      "get": {
+        "tags": [],
+        "description": "",
+        "parameters": [
+          {
+            "name": "pessoa_id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {}
+      },
+      "post": {
+        "tags": [],
+        "description": "",
+        "parameters": [
+          {
+            "name": "pessoa_id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "obj",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "celuar": {
+                  "example": "any"
+                },
+                "fixo": {
+                  "example": "any"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "400": {
+            "description": "Bad Request"
+          }
+        }
+      }
+    },
+    "/quarto": {
+      "get": {
+        "tags": [],
+        "description": "",
+        "parameters": [],
+        "responses": {}
+      },
+      "post": {
+        "tags": [],
+        "description": "",
+        "parameters": [
+          {
+            "name": "obj",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "Nome_quarto": {
+                  "example": "any"
+                },
+                "Valor_quarto": {
+                  "example": "any"
+                },
+                "Quantia_camas": {
+                  "example": "any"
+                },
+                "Quantia_banheiros": {
+                  "example": "any"
+                },
+                "Img_quarto": {
+                  "example": "any"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {}
+      }
+    },
+    "/cardapio": {
+      "get": {
+        "tags": [],
+        "description": "",
+        "parameters": [],
+        "responses": {}
+      },
+      "post": {
+        "tags": [],
+        "description": "",
+        "parameters": [
+          {
+            "name": "obj",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "dia_semana": {
+                  "example": "any"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {}
+      }
+    },
+    "/prato": {
+      "get": {
+        "tags": [],
+        "description": "",
+        "parameters": [],
+        "responses": {}
+      },
+      "post": {
+        "tags": [],
+        "description": "",
+        "parameters": [
+          {
+            "name": "obj",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "nome_prato": {
+                  "example": "any"
+                },
+                "valor_prato": {
+                  "example": "any"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {}
+      }
+    },
+    "/lista_pedidos_comida": {
+      "get": {
+        "tags": [],
+        "description": "",
+        "parameters": [],
+        "responses": {}
+      },
+      "post": {
+        "tags": [],
+        "description": "",
+        "parameters": [
+          {
+            "name": "obj",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "itens_estaticos": {
+                  "example": "any"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {}
+      }
+    },
+    "/lista_pedidos_servicos": {
+      "get": {
+        "tags": [],
+        "description": "",
+        "parameters": [],
+        "responses": {}
+      },
+      "post": {
+        "tags": [],
+        "description": "",
+        "parameters": [
+          {
+            "name": "obj",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "nome_servico": {
+                  "example": "any"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {}
+      }
+    },
+    "/cargos": {
+      "get": {
+        "tags": [],
+        "description": "",
+        "parameters": [],
+        "responses": {}
+      },
+      "post": {
+        "tags": [],
+        "description": "",
+        "parameters": [
+          {
+            "name": "obj",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "nome_cargo": {
+                  "example": "any"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {}
+      }
+    },
+    "/beneficios": {
+      "get": {
+        "tags": [],
+        "description": "",
+        "parameters": [],
+        "responses": {}
+      },
+      "post": {
+        "tags": [],
+        "description": "",
+        "parameters": [
+          {
+            "name": "obj",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "beneficio": {
+                  "example": "any"
+                },
+                "valor_beneficio": {
+                  "example": "any"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {}
+      }
+    },
+    "/cargos/{cargo_id}/usuario_sistema": {
+      "get": {
+        "tags": [],
+        "description": "",
+        "parameters": [
+          {
+            "name": "cargo_id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {}
+      },
+      "post": {
+        "tags": [],
+        "description": "",
+        "parameters": [
+          {
+            "name": "cargo_id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "obj",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "nome_usuario": {
+                  "example": "any"
+                },
+                "senha": {
+                  "example": "any"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "400": {
+            "description": "Bad Request"
+          }
+        }
+      }
+    }
+  },
+  "definitions": {},
+  "components":{
+    "schemas":{
+        "PessoaEndereco":{
+            "type": "object",
+            "properties": {
+                "nome_pessoa": {
+                    "type": "string"
+                },
+                "rg": {
+                    "type": "string"
                 }
             }
         }
     }
+}
 }
