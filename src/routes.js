@@ -18,8 +18,8 @@ const routes = express.Router();
 routes.get('/pessoa', PessoaController.index);
 routes.post('/pessoa', PessoaController.store);
 
-routes.get('/pessoa/:pessoa_id/endereco', EnderecoController.index);
-routes.post('/pessoa/:pessoa_id/endereco', EnderecoController.store);
+routes.get('/pessoa/endereco/:pessoa_id', EnderecoController.index);
+routes.post('/pessoa/endereco/:pessoa_id', EnderecoController.store);
 
 routes.get('/pessoa/:pessoa_id/telefones', TelefonesController.index);
 routes.post('/pessoa/:pessoa_id/telefones', TelefonesController.store);
