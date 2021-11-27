@@ -16,9 +16,9 @@ module.exports = {
 
     async store(req, res){
 
-        const { Nome_quarto, Valor_quarto, Quantia_camas, Quantia_banheiros, Img_quarto} = req.body;
+        const { Nome_quarto, Valor_quarto, Quantia_camas, Quantia_banheiros, Img_quarto, Descricao_quarto} = req.body;
 
-        const [nome_quarto, valor_quarto, quantia_camas, quantia_banheiros, img_quarto] = [Nome_quarto, Valor_quarto, Quantia_camas, Quantia_banheiros, Img_quarto];
+        const [nome_quarto, valor_quarto, quantia_camas, quantia_banheiros, img_quarto, descricao_quarto] = [Nome_quarto, Valor_quarto, Quantia_camas, Quantia_banheiros, Img_quarto, Descricao_quarto];
 
         // console.log("Merda 2:", req.body);
 

@@ -7,7 +7,8 @@ class Quartos extends Model{
             valor_quarto: DataTypes.DECIMAL,
             quantia_camas: DataTypes.INTEGER,
             quantia_banheiros: DataTypes.INTEGER,
-            img_quarto: DataTypes.INTEGER
+            img_quarto: DataTypes.INTEGER,
+            descricao_quarto: DataTypes.STRING
         }, {
             sequelize,//sequelize: connection
             // freezeTableName : true
