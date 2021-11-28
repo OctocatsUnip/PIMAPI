@@ -18,9 +18,7 @@ module.exports = {
     async store(req, res) {
 
         //quando for criado uma cargos, será enviado atraves do body da requisição
-        const { Nome_cargo } = req.body;
-
-        const [nome_cargo] = [Nome_cargo]
+        const { nome_cargo } = req.body;
 
         try {
             //toda manipulação do banco é assincrona, colocar await

@@ -25,11 +25,8 @@ module.exports = {
     async store(req, res){
 
         //quando for criado uma pessoa, será enviado atraves do body da requisição
-        const { Nome, Rg, Cpf, Dt_Nascimento, Sexo, Email } = req.body;
+        const { nome_pessoa, rg, cpf, dt_nascimento, sexo, email } = req.body;
 
-        const [nome_pessoa, rg, cpf, dt_nascimento, sexo, email] = [Nome, Rg, Cpf, Dt_Nascimento, Sexo, Email]
-
-        console.log("AQUI", nome_pessoa, rg, cpf, dt_nascimento, sexo, email)
 
             try{
             //toda manipulação do banco é assincrona, colocar await
