@@ -8,7 +8,7 @@ module.exports = {
         const { pessoa_id } = req.params;
 
         const pessoa = await Pessoa.findByPk(pessoa_id, {
-            include: { association: 'phone' } //aqui passa a associaçã que o sequelize deve executar - essa associação criamos na model
+            include: { association: 'telefones_owner' } //aqui passa a associaçã que o sequelize deve executar - essa associação criamos na model
         });
 
         return res.json(pessoa);

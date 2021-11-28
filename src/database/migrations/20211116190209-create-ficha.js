@@ -31,6 +31,10 @@ module.exports = {
         type: Sequelize.DATE,
         allowNull: false
       },
+      quantidade_pessoas: {
+        type: Sequelize.INTEGER,
+        allowNull: false
+      },
       created_at: {
         type: Sequelize.DATE,
         allowNull: false

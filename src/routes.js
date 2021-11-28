@@ -17,12 +17,13 @@ const routes = express.Router();
 
 routes.get('/pessoa', PessoaController.index);
 routes.post('/pessoa', PessoaController.store);
+routes.get('/pessoa/:cpf', PessoaController.findByCpf);
 
 routes.get('/pessoa/endereco/:pessoa_id', EnderecoController.index);
 routes.post('/pessoa/endereco/:pessoa_id', EnderecoController.store);
 
-routes.get('/pessoa/:pessoa_id/telefones', TelefonesController.index);
-routes.post('/pessoa/:pessoa_id/telefones', TelefonesController.store);
+routes.get('/pessoa/telefones/:pessoa_id', TelefonesController.index);
+routes.post('/pessoa/telefones/:pessoa_id', TelefonesController.store);
 
 routes.get('/quarto', QuartosController.index);
 routes.post('/quarto', QuartosController.store);

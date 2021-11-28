@@ -33,6 +33,13 @@ module.exports = {
         type: Sequelize.STRING,
         allowNull: false
       },
+      ficha_id: {
+        type: Sequelize.INTEGER,
+         allowNull: false,
+         references: {model: 'fichas', key: 'id'}, //criacao da chave estrangeira
+         onUpdate: 'CASCADE', //sempre que houver alguma alteração na tabela/campo que está se relacionando ocorrerá um efeito cascata e esse campo será atualizado
+         onDelete: 'CASCADE'
+      }
       created_at: {
         type: Sequelize.DATE,
         allowNull: false
