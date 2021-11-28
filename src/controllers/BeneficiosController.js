@@ -18,7 +18,10 @@ module.exports = {
     async store(req, res) {
 
         //quando for criado uma beneficios, será enviado atraves do body da requisição
-        const { beneficio, valor_beneficio } = req.body;
+        const { Beneficio, Valor_Beneficio } = req.body;
+
+        const [beneficio, valor_beneficio] = [Beneficio, Valor_Beneficio]
+        
 
         try {
             //toda manipulação do banco é assincrona, colocar await
