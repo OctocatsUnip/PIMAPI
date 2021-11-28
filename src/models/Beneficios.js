@@ -4,7 +4,7 @@ class Beneficios extends Model {
     static init(sequelize) {
         super.init({
             beneficio: DataTypes.STRING,
-            valor_beneficio: DataTypes.INTEGER,
+            valor_beneficio: DataTypes.DECIMAL,
         }, {
             sequelize,//sequelize: connection
             // freezeTableName : true
