@@ -5,6 +5,7 @@ class Fichas extends Model{
         super.init({
             checkin: DataTypes.DATE,
             checkout: DataTypes.DATE,
+            quantidade_pessoas: DataTypes.INTEGER,
         }, {
             sequelize, //sequelize: connection
             freezeTableName : true
@@ -12,7 +13,7 @@ class Fichas extends Model{
     }
 
     static associate(models){
-        this.belongsTo(models.Quartos, {foreignKey: 'quarto_id', as: 'quarto_owner'});
+        // this.hasOne(models.Quartos, {foreignKey: 'quarto_id', as: 'quarto_owner'});
         this.belongsTo(models.Pagantes, {foreignKey: 'pagante_id', as: 'pagante_owner'});
     }
 }

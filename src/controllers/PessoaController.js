@@ -7,11 +7,18 @@ module.exports = {
       try{
           //existem diversos metodos de encontrar, estou usando para pegar todos
         const pessoa = await Pessoa.findAll();
+        
 
         return res.json(pessoa);
       }  catch(err){
           console.log(err);
       }
+    },
+
+    async findByCpf(req, res){
+        const {cpf} = req.params;
+        const pessoa = await Pessoa.findOne({where:{cpf:cpf}});
+        return res.json(pessoa);
     },
 
     //vai armazenar um usuario de forma assincrona a aplicação
