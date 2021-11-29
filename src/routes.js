@@ -27,6 +27,7 @@ routes.post('/pessoa/telefones/:pessoa_id', TelefonesController.store);
 
 routes.get('/quarto', QuartosController.index);
 routes.post('/quarto', QuartosController.store);
+routes.post('/quarto/:quantia_banheiros', QuartosController.findByBanheiro);
 
 routes.get('/cardapio', CardapiosController.index);
 routes.post('/cardapio', CardapiosController.store);

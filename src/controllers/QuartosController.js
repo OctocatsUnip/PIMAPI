@@ -14,6 +14,13 @@ module.exports = {
         }
     },
 
+    async findByBanheiro(req, res){
+        const {Quantia_banheiros} = req.params;
+        console.log("Teste: " , quartos);
+        const quartos = await Quartos.findOne({where:{Quantia_banheiros:quantia_banheiros}});
+        return res.json(quartos);
+    },
+
     async store(req, res){
 
         const { Nome_quarto, Valor_quarto, Quantia_camas, Quantia_banheiros, Img_quarto, Descricao_quarto} = req.body;
