@@ -27,6 +27,7 @@ module.exports = {
         //quando for criado uma pessoa, será enviado atraves do body da requisição
         const { nome_pessoa, rg, cpf, dt_nascimento, sexo, email } = req.body;
 
+
             try{
             //toda manipulação do banco é assincrona, colocar await
             const pessoa = await Pessoa.create({nome_pessoa, rg, cpf, dt_nascimento, sexo, email}); 
