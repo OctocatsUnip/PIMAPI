@@ -10,7 +10,8 @@ const Quartos = require('../models/Quartos');
 const Beneficios = require('../models/Beneficios');
 const Reservas = require('../models/Reservas');
 const Funcionarios = require('../models/Funcionarios');
-const UserSistema = require('../models/UserSistema');
+const User_Sistema = require('../models/User_Sistema');
+const User_Cliente = require('../models/User_Cliente');
 
 
 //realizando a conexão com o banco
@@ -25,7 +26,8 @@ Quartos.init(connection);
 Beneficios.init(connection);
 // Reservas.init(connection);
 Funcionarios.init(connection);
-UserSistema.init(connection);
+User_Sistema.init(connection);
+User_Cliente.init(connection);
 
 //aqui inicializamos os metodos de associação
 Telefones.associate(connection.models);
@@ -35,7 +37,8 @@ Quartos.associate(connection.models);
 Status.associate(connection.models);
 // Reservas.associate(connection.models);
 Funcionarios.associate(connection.models);
-UserSistema.associate(connection.models);
+User_Sistema.associate(connection.models);
+User_Cliente.associate(connection.models);
 
 //avaliar utilizar o consign ou o require-directory para importar automaticamente e inicializar as models
 

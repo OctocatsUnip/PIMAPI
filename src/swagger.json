@@ -505,7 +505,7 @@
                         "examples": {
                              "pessoa" : {
                                  "value":{
-                                     "slario": 2500
+                                     "salario": 2500
                                  }
                              }
                         }
@@ -520,6 +520,156 @@
                             "schema":{
                              "type": "object",
                              "$ref": "#/components/schemas/Pessoa_Funcionario"
+                            }
+                        }
+                    }
+                }
+            }
+         }
+    },
+    "/user_sistema/{funcionario_id}": {
+        "get":{
+            "summary": "Trazer usuário por funcionário",
+            "description": "Traz dados do usuário por funcionário",
+            "tags": ["Funcionario"],
+            "parameters": [{
+                "in": "path",
+                "name": "funcionario_id",
+                "required": true,
+                "schema":{
+                    "type":"integer",
+                    "minimum": 1
+                }
+            }],
+            "responses": {
+                "200":{
+                    "description": "OK",
+                    "content": {
+                        "application/json":{
+                            "schema":{
+                             "type": "array",
+                             "items":{
+                                "$ref": "#/components/schemas/Funcionario_User"
+                             }
+                            }
+                        }
+                    }
+                }
+        }
+        },
+        "post":{
+            "summary" : "Cadastro de Usuário por funcionário",
+            "description": "Rota para cadastro de  Usuário por funcionário",
+            "tags": ["Funcionario"],
+            "parameters": [{
+                "in": "path",
+                "name": "funcionario_id",
+                "required": true,
+                "schema":{
+                    "type":"integer",
+                    "minimum": 1
+                }
+            }],
+            "requestBody":{
+                "content": {
+                    "application/json":{
+                        "schema": {
+                             "$ref": "#/components/schemas/user_sistema"
+                        },
+                        "examples": {
+                             "pessoa" : {
+                                 "value":{
+                                     "nome_usuario": "ana paula santos",
+                                     "senha": "teste123"                                     
+                                 }
+                             }
+                        }
+                    }
+                }
+            },
+            "responses": {
+                "200":{
+                    "description": "OK",
+                    "content": {
+                        "application/json":{
+                            "schema":{
+                             "type": "object",
+                             "$ref": "#/components/schemas/Funcionario_User"
+                            }
+                        }
+                    }
+                }
+            }
+         }
+    },
+    "/user_cliente/{pessoa_id}": {
+        "get":{
+            "summary": "Trazer usuário por pessoa",
+            "description": "Traz dados do usuário por pessoa",
+            "tags": ["Pessoas"],
+            "parameters": [{
+                "in": "path",
+                "name": "pessoa_id",
+                "required": true,
+                "schema":{
+                    "type":"integer",
+                    "minimum": 1
+                }
+            }],
+            "responses": {
+                "200":{
+                    "description": "OK",
+                    "content": {
+                        "application/json":{
+                            "schema":{
+                             "type": "array",
+                             "items":{
+                                "$ref": "#/components/schemas/Pessoa_User"
+                             }
+                            }
+                        }
+                    }
+                }
+        }
+        },
+        "post":{
+            "summary" : "Cadastro de Usuário por pessoa",
+            "description": "Rota para cadastro de  Usuário por pessoa",
+            "tags": ["Pessoas"],
+            "parameters": [{
+                "in": "path",
+                "name": "pessoa_id",
+                "required": true,
+                "schema":{
+                    "type":"integer",
+                    "minimum": 1
+                }
+            }],
+            "requestBody":{
+                "content": {
+                    "application/json":{
+                        "schema": {
+                             "$ref": "#/components/schemas/user_cliente"
+                        },
+                        "examples": {
+                             "pessoa" : {
+                                 "value":{
+                                     "email": "ana_paula23@gmail.com",
+                                     "senha": "teste123"                                     
+                                 }
+                             }
+                        }
+                    }
+                }
+            },
+            "responses": {
+                "200":{
+                    "description": "OK",
+                    "content": {
+                        "application/json":{
+                            "schema":{
+                             "type": "object",
+                             "$ref": "#/components/schemas/Pessoa_User"
                             }
                         }
                     }
@@ -710,6 +860,68 @@
         "salario":{
             "type": "number"
           }
+    }
+  },
+  "user_sistema":{
+    "type": "object",
+    "properties": {
+        "nome_usuario":{
+            "type": "string"
+          },
+          "senha":{
+            "type": "string"
+          }
+    }
+  },
+  "Funcionario_User": {
+    "type": "object",
+    "properties": {
+        "salario":{
+            "type": "number"
+          },
+        "nome_usuario":{
+            "type": "string"
+          },
+          "senha":{
+            "type": "string"
+          }
+    }
+  },
+  "user_cliente":{
+    "type": "object",
+    "properties": {
+        "email":{
+            "type": "string"
+          },
+          "senha":{
+            "type": "string"
+          }
+    }
+  },
+  "Pessoa_User": {
+    "type": "object",
+    "properties": {
+        "nome": {
+            "type": "string"
+        },
+        "rg": {
+            "type": "string"
+        },
+        "cpf": {
+          "type": "string"
+      },
+      "data_nascimento": {
+        "type": "number"
+    },
+    "sexo": {
+      "type": "string"
+  },
+  "email":{
+    "type": "string"
+  },
+  "senha":{
+    "type": "string"
+  }  
     }
   }
 

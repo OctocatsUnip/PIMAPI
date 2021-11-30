@@ -1,4 +1,4 @@
-const UserSistema = require("../models/UserSistema");
+const UserSistema = require("../models/User_Sistema");
 const Funcionarios = require("../models/Funcionarios");
 
 module.exports = {

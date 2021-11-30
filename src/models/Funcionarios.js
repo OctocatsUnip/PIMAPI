@@ -11,7 +11,7 @@ class Funcionarios extends Model{
 
     static associate(models){
         this.belongsTo(models.Pessoas, {foreignKey: 'pessoa_id', as: 'funcionario_owner'}); //fazemos a associacao de que uma pessoa possui muitos enderecos
-        this.hasOne(models.UserSistema, {foreignKey: 'funcionario_id', as: 'user_sistema_owner'});
+        this.hasOne(models.User_Sistema, {foreignKey: 'funcionario_id', as: 'user_sistema_owner'});
     }
 }
 

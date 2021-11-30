@@ -9,6 +9,7 @@ const QuartosController = require('./controllers/QuartosController');
 const BeneficiosController = require('./controllers/BeneficiosController');
 const FuncionariosController = require('./controllers/FuncionariosController');
 const UserSistemaController = require('./controllers/UserSistemaController');
+const UserClienteController =require('./controllers/UserClienteController');
 
 const routes = express.Router();
 
@@ -37,7 +38,10 @@ routes.post('/beneficio', BeneficiosController.store);
 routes.get('/funcionario/:pessoa_id', FuncionariosController.index);
 routes.post('/funcionario/:pessoa_id', FuncionariosController.store);
 
-routes.get('/user_sistema/:funcionario', UserSistemaController.index);
-routes.post('/user_sistema/:funcionario', UserSistemaController.store);
+routes.get('/user_sistema/:funcionario_id', UserSistemaController.index);
+routes.post('/user_sistema/:funcionario_id', UserSistemaController.store);
+
+routes.get('/user_cliente/:pessoa_id', UserClienteController.index);
+routes.post('/user_cliente/:pessoa_id', UserClienteController.store);
 
 module.exports = routes;

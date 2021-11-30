@@ -14,15 +14,19 @@ class Pessoas extends Model{
     }
 
     static associate(models){
-        this.hasMany(models.Telefones, {foreignKey: 'pessoa_id', as: 'telefone_owner'}); //fazemos a associacao de que uma pessoa possui muitos enderecos
+        this.hasMany(models.Telefones, {foreignKey: 'pessoa_id', as: 'telefone_owner'});
     }
 
     static associate(models){
-        this.hasOne(models.Enderecos, {foreignKey: 'pessoa_id', as: 'endereco_owner'}); //fazemos a associacao de que uma pessoa possui muitos enderecos
+        this.hasOne(models.Enderecos, {foreignKey: 'pessoa_id', as: 'endereco_owner'}); 
     }
 
     static associate(models){
-        this.hasOne(models.Funcionarios, {foreignKey: 'pessoa_id', as: 'funcionario_owner'}); //fazemos a associacao de que uma pessoa possui muitos enderecos
+        this.hasOne(models.Funcionarios, {foreignKey: 'pessoa_id', as: 'funcionario_owner'});
+    }
+
+    static associate(models){
+        this.hasOne(models.User_Cliente, {foreignKey: 'pessoa_id', as: 'user_cliente_owner'});
     }
 }
 
