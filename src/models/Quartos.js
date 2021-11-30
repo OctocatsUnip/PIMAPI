@@ -7,7 +7,7 @@ class Quartos extends Model{
             valor_quarto: DataTypes.DECIMAL,
             quantia_camas: DataTypes.INTEGER,
             quantia_banheiros: DataTypes.INTEGER,
-            img_quarto: DataTypes.INTEGER,
+            img_quarto: DataTypes.STRING,
             descricao_quarto: DataTypes.STRING
         }, {
             sequelize,//sequelize: connection
@@ -16,7 +16,7 @@ class Quartos extends Model{
     }
 
     static associate(models){
-        //this.belongsTo(models.Fichas, {foreignKey: 'ficha_id', as: 'ficha_owner'}); //fazemos a associacao de que uma pessoa possui muitos enderecos
+        this.belongsTo(models.Status, {foreignKey: 'status_id', as: 'status_owner'}); //fazemos a associacao de que uma pessoa possui muitos enderecos
     }
 }
 

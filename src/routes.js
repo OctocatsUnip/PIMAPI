@@ -4,7 +4,8 @@ const express = require('express');
 const PessoasController = require('./controllers/PessoasController');
 const TelefonesController = require('./controllers/TelefonesController');
 const EnderecosController = require('./controllers/EnderecosController');
-// const QuartosController = require('./controllers/QuartosController');
+const StatusController = require('./controllers/StatusController');
+const QuartosController = require('./controllers/QuartosController');
 
 const routes = express.Router();
 
@@ -18,8 +19,13 @@ routes.get('/pessoas/telefones/:pessoa_id', TelefonesController.index);
 routes.get('/pessoas/endereco/:pessoa_id', EnderecosController.index);
 routes.post('/pessoas/endereco/:pessoa_id', EnderecosController.store);
 
-// routes.get('/quarto', QuartosController.index);
-// routes.post('/quarto', QuartosController.store);
+routes.get('/status', StatusController.index);
+routes.get('/status/:nome_status', StatusController.findByName);
+routes.post('/status', StatusController.store);
+
+routes.get('/quartos', QuartosController.index);
+routes.post('/quartos', QuartosController.store);
+routes.post('/quartos/:nome_quarto', QuartosController.updateStatus);
 // routes.post('/quarto/:quantia_banheiros', QuartosController.findByBanheiro);
 
 

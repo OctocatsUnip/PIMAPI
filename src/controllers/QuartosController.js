@@ -1,5 +1,5 @@
 const Quartos = require('../models/Quartos');
-const { index, store } = require('./PessoaController');
+const Status = require('../models/Status');
 
 module.exports = {
 
@@ -14,12 +14,12 @@ module.exports = {
         }
     },
 
-    async findByBanheiro(req, res){
-        const {Quantia_banheiros} = req.params;
-        console.log("Teste: " , quartos);
-        const quartos = await Quartos.findOne({where:{Quantia_banheiros:quantia_banheiros}});
-        return res.json(quartos);
-    },
+    // async findByBanheiro(req, res){
+    //     const {Quantia_banheiros} = req.params;
+    //     console.log("Teste: " , quartos);
+    //     const quartos = await Quartos.findOne({where:{Quantia_banheiros:quantia_banheiros}});
+    //     return res.json(quartos);
+    // },
 
     async store(req, res){
 
@@ -27,15 +27,37 @@ module.exports = {
 
         const [nome_quarto, valor_quarto, quantia_camas, quantia_banheiros, img_quarto, descricao_quarto] = [Nome_quarto, Valor_quarto, Quantia_camas, Quantia_banheiros, Img_quarto, Descricao_quarto];
 
-        //console.log("Merda 2:", req.body);
+        // status_owner
+
+        const status_default = await Status.findOne({where:{nome_status:"disponivel"}});        
+        const {id, nome_status} = status_default;
+
+        const status_id = id;
 
         try{
-
-            // const quarto_print = {nome_quarto, valor_quarto, quantia_camas, quantia_banheiros, img_quarto};
-            //console.log("Aqui está essa merda:", quarto_print);
-
-            const quarto = await Quartos.create({nome_quarto, valor_quarto, quantia_camas, quantia_banheiros, img_quarto, descricao_quarto});
+            const quarto = await Quartos.create({nome_quarto, valor_quarto, quantia_camas, quantia_banheiros, img_quarto, descricao_quarto, status_id});
             return res.json(quarto);
+        }catch(err){
+            console.log(err);
+        }
+    },
+
+    async updateStatus(req, res){
+        const {nome_quarto} = req.params;
+        const {escolha_status} = req.body;
+
+        const status_choice = await Status.findOne({where:{nome_status:escolha_status}});        
+        const {id, nome_status} = status_choice;
+
+        const status_id = id;
+        
+        try{
+            const mudanca = await Quartos.update({status_id: status_id}, {
+                where: {
+                    nome_quarto: nome_quarto
+                }
+            });
+            return res.json(mudanca);
         }catch(err){
             console.log(err);
         }

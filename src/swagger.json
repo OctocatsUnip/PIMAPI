@@ -259,6 +259,199 @@
                 }
             }
          }
+    },
+    "/status":{
+        "get":{
+            "summary": "Trazer todos os status",
+            "description": "Traz todos os status cadastrados",
+            "tags": ["Status"],
+            "responses": {
+                "200":{
+                    "description": "OK",
+                    "content": {
+                        "application/json":{
+                            "schema":{
+                             "type": "array",
+                             "items":{
+                                "$ref": "#/components/schemas/Status"
+                             }
+                            }
+                        }
+                    }
+                }
+        }
+        },
+        "post":{
+            "summary" : "Cadastro de Endereços pessoa",
+            "description": "Rota para cadastro de endereços em uma pessoa",
+            "tags": ["Status"],            
+            "requestBody":{
+                "content": {
+                    "application/json":{
+                        "schema": {
+                             "$ref": "#/components/schemas/Status"
+                        },
+                        "examples": {
+                             "pessoa" : {
+                                 "value":{
+                                     "logradouro": "disponivel"
+                                 }
+                             }
+                        }
+                    }
+                }
+            },
+            "responses": {
+                "200":{
+                    "description": "OK",
+                    "content": {
+                        "application/json":{
+                            "schema":{
+                             "type": "object",
+                             "$ref": "#/components/schemas/Status"
+                            }
+                        }
+                    }
+                }
+            }
+         }
+    },
+    "/status/{nome_status}":{
+        "get":{
+            "summary": "Trazer status específico por nome",
+            "description": "Traz status específico pelo nome",
+            "tags": ["Status"],
+            "parameters": [{
+                "in": "path",
+                "name": "nome_status",
+                "required": true,
+                "schema":{
+                    "type":"string",
+                    "minimum": 1
+                }
+            }],
+            "responses": {
+                "200":{
+                    "description": "OK",
+                    "content": {
+                        "application/json":{
+                            "schema":{
+                             "type": "array",
+                             "items":{
+                                "$ref": "#/components/schemas/Status"
+                             }
+                            }
+                        }
+                    }
+                }
+        }
+        }
+    },
+    "/quartos": {
+        "get":{
+            "summary": "Trazer todos os quartos",
+            "description": "Traz todos os quartos cadastrados",
+            "tags": ["Quartos"],
+            "responses": {
+                "200":{
+                    "description": "OK",
+                    "content": {
+                        "application/json":{
+                            "schema":{
+                             "type": "array",
+                             "items":{
+                                "$ref": "#/components/schemas/Quartos"
+                             }
+                            }
+                        }
+                    }
+                }
+        }
+    },
+    "post":{
+        "summary" : "Cadastro de Quartos",
+        "description": "Rota para cadastro de Quartos",
+        "tags": ["Quartos"],            
+        "requestBody":{
+            "content": {
+                "application/json":{
+                    "schema": {
+                         "$ref": "#/components/schemas/Quartos"
+                    },
+                    "examples": {
+                         "pessoa" : {
+                             "value":{
+                                 "nome_quarto": "Delux",
+                                 "valor_quarto": 120,
+                                 "quantia_camas": 1,
+                                 "quantia_banheiros": 1,
+                                 "img_quarto": "1",
+                                 "descricao_quarto": "Um quarto cofortável"
+                             }
+                         }
+                    }
+                }
+            }
+        },
+        "responses": {
+            "200":{
+                "description": "OK",
+                "content": {
+                    "application/json":{
+                        "schema":{
+                         "type": "object",
+                         "$ref": "#/components/schemas/Quartos"
+                        }
+                    }
+                }
+            }
+        }
+     }
+    },
+    "/quartos/{nome_quarto}":{
+        "post":{
+            "summary" : "Atualizar status de um quarto",
+            "description": "Rota para Atualizar status de um quarto",
+            "tags": ["Quartos"],
+            "parameters": [{
+                "in": "path",
+                "name": "nome_quarto",
+                "required": true,
+                "schema":{
+                    "type":"string",
+                    "minimum": 1
+                }
+            }],
+            "requestBody":{
+                "content": {
+                    "application/json":{
+                        "schema": {
+                             "$ref": "#/components/schemas/Status"
+                        },
+                        "examples": {
+                             "pessoa" : {
+                                 "value":{
+                                    "nome_status": "ocupado"
+                                 }
+                             }
+                        }
+                    }
+                }
+            },
+            "responses": {
+                "200":{
+                    "description": "OK",
+                    "content": {
+                        "application/json":{
+                            "schema":{
+                             "type": "object",
+                             "$ref": "#/components/schemas/Quartos"
+                            }
+                        }
+                    }
+                }
+            }
+         }
     }
   },
   
@@ -382,7 +575,39 @@
                 "type": "string"
               }
         }
+      },
+      "Status":{
+        "type": "object",
+        "properties": {
+            "nome_status":{
+                "type": "string"
+              }
+        }
+      },
+      "Quartos":{
+        "type": "object",
+        "properties": {
+            "nome_quarto": {
+                "type": "string"
+            },
+            "valor_quarto": {
+                "type": "number"
+            },
+            "quantia_camas": {
+              "type": "number"
+          },
+          "quantia_banheiros": {
+            "type": "number"
+        },
+        "img_quarto": {
+          "type": "string"
+      },
+      "descricao_quarto": {
+        "type": "string"
+    }    
       }
     }
   }
-}                
+
+}  
+}             
