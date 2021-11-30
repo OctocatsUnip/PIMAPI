@@ -15,18 +15,11 @@ class Pessoas extends Model{
 
     static associate(models){
         this.hasMany(models.Telefones, {foreignKey: 'pessoa_id', as: 'telefone_owner'});
-    }
-
-    static associate(models){
         this.hasOne(models.Enderecos, {foreignKey: 'pessoa_id', as: 'endereco_owner'}); 
-    }
-
-    static associate(models){
         this.hasOne(models.Funcionarios, {foreignKey: 'pessoa_id', as: 'funcionario_owner'});
-    }
-
-    static associate(models){
         this.hasOne(models.User_Cliente, {foreignKey: 'pessoa_id', as: 'user_cliente_owner'});
+
+        Pessoas.belongsToMany(models.Reservas, { through: 'reservas_pessoas', as: 'PessoasOwner', foreignKey: 'pessoa_id'});
     }
 }
 
