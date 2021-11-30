@@ -10,9 +10,9 @@ class Beneficios extends Model{
         })
     }
 
-    // static associate(models){
-    //     this.belongsToMany(models.Reservas, { foreignKey: 'beneficio_id', through: 'reservas_beneficios', as: 'reservas_possuem_beneficio'});
-    // }
+    static associate(models){
+        this.belongsToMany(models.Reservas, { foreignKey: 'beneficio_id', through: 'reservas_beneficios', as: 'reservas_possuem_beneficio'});
+    }
 
 }
 

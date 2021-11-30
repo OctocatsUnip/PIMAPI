@@ -10,6 +10,7 @@ const BeneficiosController = require('./controllers/BeneficiosController');
 const FuncionariosController = require('./controllers/FuncionariosController');
 const UserSistemaController = require('./controllers/UserSistemaController');
 const UserClienteController =require('./controllers/UserClienteController');
+const ReservasController = require('./controllers/ReservasController');
 
 const routes = express.Router();
 
@@ -34,6 +35,9 @@ routes.post('/quartos/:nome_quarto', QuartosController.updateStatus);
 
 routes.get('/beneficio', BeneficiosController.index);
 routes.post('/beneficio', BeneficiosController.store);
+
+routes.get('/reservas/:quarto_nome', ReservasController.index);
+routes.post('/reservas/:quarto_nome', ReservasController.store);
 
 routes.get('/funcionario/:pessoa_id', FuncionariosController.index);
 routes.post('/funcionario/:pessoa_id', FuncionariosController.store);
