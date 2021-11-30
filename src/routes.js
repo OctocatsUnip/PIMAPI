@@ -29,9 +29,10 @@ routes.get('/status/:nome_status', StatusController.findByName);
 routes.post('/status', StatusController.store);
 
 routes.get('/quartos', QuartosController.index);
+routes.get('/quartos/:quantia_banheiros,:quantia_camas', QuartosController.findByBanheiro);
 routes.post('/quartos', QuartosController.store);
 routes.post('/quartos/:nome_quarto', QuartosController.updateStatus);
-// routes.post('/quarto/:quantia_banheiros', QuartosController.findByBanheiro);
+
 
 routes.get('/beneficio', BeneficiosController.index);
 routes.post('/beneficio', BeneficiosController.store);

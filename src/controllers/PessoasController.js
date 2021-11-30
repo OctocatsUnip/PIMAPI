@@ -16,8 +16,8 @@ module.exports = {
 
     async findByCpf(req, res){
         const {cpf} = req.params;
-        const pessoa = await Pessoas.findOne({where:{cpf:cpf}});
-        return res.json(pessoa);
+        const pessoas = await Pessoas.findOne({where:{cpf:cpf}});
+        return res.json(pessoas);
     },
 
     //vai armazenar um usuario de forma assincrona a aplicação
