@@ -452,6 +452,80 @@
                 }
             }
          }
+    },
+    "/funcionario/{pessoa_id}":{
+        "get":{
+            "summary": "Trazer funcionário por pessoa",
+            "description": "Traz dados funcionário por pessoa",
+            "tags": ["Funcionario"],
+            "parameters": [{
+                "in": "path",
+                "name": "pessoa_id",
+                "required": true,
+                "schema":{
+                    "type":"integer",
+                    "minimum": 1
+                }
+            }],
+            "responses": {
+                "200":{
+                    "description": "OK",
+                    "content": {
+                        "application/json":{
+                            "schema":{
+                             "type": "array",
+                             "items":{
+                                "$ref": "#/components/schemas/Pessoa_Funcionario"
+                             }
+                            }
+                        }
+                    }
+                }
+        }
+        },
+        "post":{
+            "summary" : "Cadastro de Funcionario por pessoa",
+            "description": "Rota para cadastro de Funcionario por pessoa",
+            "tags": ["Funcionario"],
+            "parameters": [{
+                "in": "path",
+                "name": "pessoa_id",
+                "required": true,
+                "schema":{
+                    "type":"integer",
+                    "minimum": 1
+                }
+            }],
+            "requestBody":{
+                "content": {
+                    "application/json":{
+                        "schema": {
+                             "$ref": "#/components/schemas/funcionario"
+                        },
+                        "examples": {
+                             "pessoa" : {
+                                 "value":{
+                                     "slario": 2500
+                                 }
+                             }
+                        }
+                    }
+                }
+            },
+            "responses": {
+                "200":{
+                    "description": "OK",
+                    "content": {
+                        "application/json":{
+                            "schema":{
+                             "type": "object",
+                             "$ref": "#/components/schemas/Pessoa_Funcionario"
+                            }
+                        }
+                    }
+                }
+            }
+         }
     }
   },
   
@@ -606,8 +680,39 @@
         "type": "string"
     }    
       }
+    },
+    "Pessoa_Funcionario": {
+        "type": "object",
+        "properties": {
+            "nome": {
+                "type": "string"
+            },
+            "rg": {
+                "type": "string"
+            },
+            "cpf": {
+              "type": "string"
+          },
+          "data_nascimento": {
+            "type": "number"
+        },
+        "sexo": {
+          "type": "string"
+      },
+      "salario":{
+        "type": "number"
+      }
+    }
+  },
+  "Funcionario":{
+    "type": "object",
+    "properties": {
+        "salario":{
+            "type": "number"
+          }
     }
   }
 
 }  
-}             
+}  
+}           

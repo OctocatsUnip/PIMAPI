@@ -20,6 +20,10 @@ class Pessoas extends Model{
     static associate(models){
         this.hasOne(models.Enderecos, {foreignKey: 'pessoa_id', as: 'endereco_owner'}); //fazemos a associacao de que uma pessoa possui muitos enderecos
     }
+
+    static associate(models){
+        this.hasOne(models.Funcionarios, {foreignKey: 'pessoa_id', as: 'funcionario_owner'}); //fazemos a associacao de que uma pessoa possui muitos enderecos
+    }
 }
 
 module.exports = Pessoas;

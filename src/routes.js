@@ -7,6 +7,8 @@ const EnderecosController = require('./controllers/EnderecosController');
 const StatusController = require('./controllers/StatusController');
 const QuartosController = require('./controllers/QuartosController');
 const BeneficiosController = require('./controllers/BeneficiosController');
+const FuncionariosController = require('./controllers/FuncionariosController');
+const UserSistemaController = require('./controllers/UserSistemaController');
 
 const routes = express.Router();
 
@@ -32,6 +34,10 @@ routes.post('/quartos/:nome_quarto', QuartosController.updateStatus);
 routes.get('/beneficio', BeneficiosController.index);
 routes.post('/beneficio', BeneficiosController.store);
 
+routes.get('/funcionario/:pessoa_id', FuncionariosController.index);
+routes.post('/funcionario/:pessoa_id', FuncionariosController.store);
 
+routes.get('/user_sistema/:funcionario', UserSistemaController.index);
+routes.post('/user_sistema/:funcionario', UserSistemaController.store);
 
 module.exports = routes;
