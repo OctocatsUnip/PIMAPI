@@ -4,8 +4,7 @@
   "main": "server.js",
   "license": "MIT",
   "scripts": {
-    "dev": "nodemon src/server.js",
-    "swagger-autogen": "node swagger.js"
+    "dev": "nodemon src/server.js"    
   },
   "dependencies": {
     "express": "^4.17.1",

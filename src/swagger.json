@@ -1,445 +1,388 @@
 {
-  "swagger": "2.0",
-  "info":{
+  "openapi": "3.0.3",
+"info":{
     "title": "API - Hotel Management",
     "description": "CRUD, DDL e MDL entre banco MSSQL com auxílio do sequalize para consumo em diferentes plataformas",
     "termsOfService": "Null",
     "contact":{
         "email": "OctocatsUnip@gmail.com"
     },
-    "version": "1.0.0"
-},
-  "host": "localhost:5000",
-  "basePath": "/docs",
-  "tags": [],
-  "schemes": [
-    "http"
-  ],
-  "consumes": [],
-  "produces": [],
-  "paths": {
-    "/pessoa": {
-      "get": {
-        "tags": [],
-        "description": "",
-        "parameters": [],
-        "responses": {}
-      },
-      "post": {
-        "tags": [],
-        "description": "",
-        "parameters": [
-          {
-            "name": "obj",
-            "in": "body",
-            "schema": {
-              "type": "object",
-              "properties": {
-                "nome_pessoa": {
-                  "example": "any"
-                },
-                "rg": {
-                  "example": "any"
-                },
-                "cpf": {
-                  "example": "any"
-                },
-                "dt_nascimento": {
-                  "example": "any"
-                },
-                "sexo": {
-                  "example": "any"
-                },
-                "email": {
-                  "example": "any"
+    "version": "1.0.0",
+"servers": [
+    {
+        "url": "http://localhost:5000",
+        "description": "API dev"
+    }
+]},
+"paths":{
+    "/pessoas":{
+        "post":{
+           "summary" : "Cadastro de Pessoa",
+           "description": "Rota para cadastro de pessoa",
+           "tags": ["Pessoas"],
+           "requestBody":{
+               "content": {
+                   "application/json":{
+                       "schema": {
+                            "$ref": "#/components/schemas/Pessoas"
+                       },
+                       "examples": {
+                            "pessoa" : {
+                                "value":{
+                                    "nome": "John Doe",
+                                    "rg": "256889984545",
+                                    "cpf": "1436589612425",
+                                    "data_nascimento": 25101981,
+                                    "sexo": "Masculino"
+                                }
+                            }
+                       }
+                   }
+               }
+           },
+           "responses": {
+               "200":{
+                   "description": "OK",
+                   "content": {
+                       "application/json":{
+                           "schema":{
+                            "type": "object",
+                            "$ref": "#/components/schemas/Pessoas"
+                           }
+                       }
+                   }
+               }
+           }
+        },
+        "get": {
+            "summary": "Lista de pessoas",
+            "description": "Listagem de todas as Pessoas",
+            "tags": ["Pessoas"],
+            "responses": {
+                "200":{
+                    "description": "OK",
+                    "content": {
+                        "application/json":{
+                            "schema":{
+                             "type": "array",
+                             "items":{
+                                "$ref": "#/components/schemas/Pessoas"
+                             }
+                            }
+                        }
+                    }
                 }
-              }
-            }
-          }
-        ],
-        "responses": {}
-      }
+    }
+      } 
     },
-    "/pessoa/endereco/{pessoa_id}": {
-      "get": {
-        "tags": [],
-        "description": "",
-        "parameters": [
-          {
-            "name": "pessoa_id",
-            "in": "path",
-            "required": true,
-            "type": "string"
-          }
-        ],
-        "responses": {
-          "200":{
-            "description": "OK",
-            "content": {
-                "application/json":{
-                    "schema":{
-                      "type": "array",
-                      "items":{
-                        "$ref": "#/components/schemas/PessoaEndereco"
-                     }
+    "/pessoas/{cpf}":{
+        "get":{
+            "summary": "Achar pessoa por CPF",
+            "description": "Traz os registros de uma pessoa pelo CPF",
+            "tags": ["Pessoas"],
+            "parameters": [{
+                "in": "path",
+                "name": "cpf",
+                "required": true,
+                "schema":{
+                    "type":"integer",
+                    "minimum": 1
+                }
+            }],
+            "responses": {
+                "200":{
+                    "description": "OK",
+                    "content": {
+                        "application/json":{
+                            "schema":{
+                             "type": "array",
+                             "items":{
+                                "$ref": "#/components/schemas/Pessoas"
+                             }
+                            }
+                        }
+                    }
+                }
+        }
+    }
+},
+    "/pessoas/endereco/{pessoa_id}":{
+        "get":{
+            "summary": "Trazer endereços pessoa",
+            "description": "Traz todos os endereços vinculados a pessoa",
+            "tags": ["Pessoas"],
+            "parameters": [{
+                "in": "path",
+                "name": "pessoa_id",
+                "required": true,
+                "schema":{
+                    "type":"integer",
+                    "minimum": 1
+                }
+            }],
+            "responses": {
+                "200":{
+                    "description": "OK",
+                    "content": {
+                        "application/json":{
+                            "schema":{
+                             "type": "array",
+                             "items":{
+                                "$ref": "#/components/schemas/Pessoa_Enderecos"
+                             }
+                            }
+                        }
+                    }
+                }
+        }
+        },
+        "post":{
+            "summary" : "Cadastro de Endereços pessoa",
+            "description": "Rota para cadastro de endereços em uma pessoa",
+            "tags": ["Pessoas"],
+            "parameters": [{
+                "in": "path",
+                "name": "pessoa_id",
+                "required": true,
+                "schema":{
+                    "type":"integer",
+                    "minimum": 1
+                }
+            }],
+            "requestBody":{
+                "content": {
+                    "application/json":{
+                        "schema": {
+                             "$ref": "#/components/schemas/Enderecos"
+                        },
+                        "examples": {
+                             "pessoa" : {
+                                 "value":{
+                                     "logradouro": "Avenida do Café",
+                                     "numero": 270,
+                                     "bairro": "Vila Tibério",
+                                     "cidade": "Ribeirão Preto",
+                                     "estado": "São Paulo",
+                                     "cep": 1569887
+                                 }
+                             }
+                        }
+                    }
+                }
+            },
+            "responses": {
+                "200":{
+                    "description": "OK",
+                    "content": {
+                        "application/json":{
+                            "schema":{
+                             "type": "object",
+                             "$ref": "#/components/schemas/Pessoa_Enderecos"
+                            }
+                        }
                     }
                 }
             }
+         }
+    },
+    "/pessoas/telefones/{pessoa_id}": {
+        "get":{
+            "summary": "Trazer telefones pessoa",
+            "description": "Traz todos os telefones vinculados a pessoa",
+            "tags": ["Pessoas"],
+            "parameters": [{
+                "in": "path",
+                "name": "pessoa_id",
+                "required": true,
+                "schema":{
+                    "type":"integer",
+                    "minimum": 1
+                }
+            }],
+            "responses": {
+                "200":{
+                    "description": "OK",
+                    "content": {
+                        "application/json":{
+                            "schema":{
+                             "type": "array",
+                             "items":{
+                                "$ref": "#/components/schemas/Pessoa_Telefones"
+                             }
+                            }
+                        }
+                    }
+                }
         }
-        }
-      },
-      "post": {
-        "tags": [],
-        "description": "",
-        "parameters": [
-          {
-            "name": "pessoa_id",
-            "in": "path",
-            "required": true,
-            "type": "string"
-          },
-          {
-            "name": "obj",
-            "in": "body",
-            "schema": {
-              "type": "object",
-              "properties": {
-                "cep": {
-                  "example": "any"
-                },
-                "rua": {
-                  "example": "any"
-                },
-                "number": {
-                  "example": "any"
+        },
+        "post":{
+            "summary" : "Cadastro de Telefones pessoa",
+            "description": "Rota para cadastro de telefones em uma pessoa",
+            "tags": ["Pessoas"],
+            "parameters": [{
+                "in": "path",
+                "name": "pessoa_id",
+                "required": true,
+                "schema":{
+                    "type":"integer",
+                    "minimum": 1
                 }
-              }
-            }
-          }
-        ],
-        "responses": {
-          "400": {
-            "description": "Bad Request"
-          }
-        }
-      }
-    },
-    "/pessoa/{pessoa_id}/telefones": {
-      "get": {
-        "tags": [],
-        "description": "",
-        "parameters": [
-          {
-            "name": "pessoa_id",
-            "in": "path",
-            "required": true,
-            "type": "string"
-          }
-        ],
-        "responses": {}
-      },
-      "post": {
-        "tags": [],
-        "description": "",
-        "parameters": [
-          {
-            "name": "pessoa_id",
-            "in": "path",
-            "required": true,
-            "type": "string"
-          },
-          {
-            "name": "obj",
-            "in": "body",
-            "schema": {
-              "type": "object",
-              "properties": {
-                "celuar": {
-                  "example": "any"
-                },
-                "fixo": {
-                  "example": "any"
+            }],
+            "requestBody":{
+                "content": {
+                    "application/json":{
+                        "schema": {
+                             "$ref": "#/components/schemas/Telefones"
+                        },
+                        "examples": {
+                             "pessoa" : {
+                                 "value":{
+                                    "numero": 169852632,
+                                     "tipo": "celular auxiliar"
+                                 }
+                             }
+                        }
+                    }
                 }
-              }
-            }
-          }
-        ],
-        "responses": {
-          "400": {
-            "description": "Bad Request"
-          }
-        }
-      }
-    },
-    "/quarto": {
-      "get": {
-        "tags": [],
-        "description": "",
-        "parameters": [],
-        "responses": {}
-      },
-      "post": {
-        "tags": [],
-        "description": "",
-        "parameters": [
-          {
-            "name": "obj",
-            "in": "body",
-            "schema": {
-              "type": "object",
-              "properties": {
-                "Nome_quarto": {
-                  "example": "any"
-                },
-                "Valor_quarto": {
-                  "example": "any"
-                },
-                "Quantia_camas": {
-                  "example": "any"
-                },
-                "Quantia_banheiros": {
-                  "example": "any"
-                },
-                "Img_quarto": {
-                  "example": "any"
+            },
+            "responses": {
+                "200":{
+                    "description": "OK",
+                    "content": {
+                        "application/json":{
+                            "schema":{
+                             "type": "object",
+                             "$ref": "#/components/schemas/Pessoa_Telefones"
+                            }
+                        }
+                    }
                 }
-              }
             }
-          }
-        ],
-        "responses": {}
-      }
-    },
-    "/cardapio": {
-      "get": {
-        "tags": [],
-        "description": "",
-        "parameters": [],
-        "responses": {}
-      },
-      "post": {
-        "tags": [],
-        "description": "",
-        "parameters": [
-          {
-            "name": "obj",
-            "in": "body",
-            "schema": {
-              "type": "object",
-              "properties": {
-                "dia_semana": {
-                  "example": "any"
-                }
-              }
-            }
-          }
-        ],
-        "responses": {}
-      }
-    },
-    "/prato": {
-      "get": {
-        "tags": [],
-        "description": "",
-        "parameters": [],
-        "responses": {}
-      },
-      "post": {
-        "tags": [],
-        "description": "",
-        "parameters": [
-          {
-            "name": "obj",
-            "in": "body",
-            "schema": {
-              "type": "object",
-              "properties": {
-                "nome_prato": {
-                  "example": "any"
-                },
-                "valor_prato": {
-                  "example": "any"
-                }
-              }
-            }
-          }
-        ],
-        "responses": {}
-      }
-    },
-    "/lista_pedidos_comida": {
-      "get": {
-        "tags": [],
-        "description": "",
-        "parameters": [],
-        "responses": {}
-      },
-      "post": {
-        "tags": [],
-        "description": "",
-        "parameters": [
-          {
-            "name": "obj",
-            "in": "body",
-            "schema": {
-              "type": "object",
-              "properties": {
-                "itens_estaticos": {
-                  "example": "any"
-                }
-              }
-            }
-          }
-        ],
-        "responses": {}
-      }
-    },
-    "/lista_pedidos_servicos": {
-      "get": {
-        "tags": [],
-        "description": "",
-        "parameters": [],
-        "responses": {}
-      },
-      "post": {
-        "tags": [],
-        "description": "",
-        "parameters": [
-          {
-            "name": "obj",
-            "in": "body",
-            "schema": {
-              "type": "object",
-              "properties": {
-                "nome_servico": {
-                  "example": "any"
-                }
-              }
-            }
-          }
-        ],
-        "responses": {}
-      }
-    },
-    "/cargos": {
-      "get": {
-        "tags": [],
-        "description": "",
-        "parameters": [],
-        "responses": {}
-      },
-      "post": {
-        "tags": [],
-        "description": "",
-        "parameters": [
-          {
-            "name": "obj",
-            "in": "body",
-            "schema": {
-              "type": "object",
-              "properties": {
-                "nome_cargo": {
-                  "example": "any"
-                }
-              }
-            }
-          }
-        ],
-        "responses": {}
-      }
-    },
-    "/beneficios": {
-      "get": {
-        "tags": [],
-        "description": "",
-        "parameters": [],
-        "responses": {}
-      },
-      "post": {
-        "tags": [],
-        "description": "",
-        "parameters": [
-          {
-            "name": "obj",
-            "in": "body",
-            "schema": {
-              "type": "object",
-              "properties": {
-                "beneficio": {
-                  "example": "any"
-                },
-                "valor_beneficio": {
-                  "example": "any"
-                }
-              }
-            }
-          }
-        ],
-        "responses": {}
-      }
-    },
-    "/cargos/{cargo_id}/usuario_sistema": {
-      "get": {
-        "tags": [],
-        "description": "",
-        "parameters": [
-          {
-            "name": "cargo_id",
-            "in": "path",
-            "required": true,
-            "type": "string"
-          }
-        ],
-        "responses": {}
-      },
-      "post": {
-        "tags": [],
-        "description": "",
-        "parameters": [
-          {
-            "name": "cargo_id",
-            "in": "path",
-            "required": true,
-            "type": "string"
-          },
-          {
-            "name": "obj",
-            "in": "body",
-            "schema": {
-              "type": "object",
-              "properties": {
-                "nome_usuario": {
-                  "example": "any"
-                },
-                "senha": {
-                  "example": "any"
-                }
-              }
-            }
-          }
-        ],
-        "responses": {
-          "400": {
-            "description": "Bad Request"
-          }
-        }
-      }
+         }
     }
   },
-  "definitions": {},
+  
+
   "components":{
     "schemas":{
-        "PessoaEndereco":{
+        "Pessoas":{
             "type": "object",
             "properties": {
-                "nome_pessoa": {
+                "nome": {
                     "type": "string"
                 },
                 "rg": {
                     "type": "string"
-                }
-            }
+                },
+                "cpf": {
+                  "type": "string"
+              },
+              "data_nascimento": {
+                "type": "number"
+            },
+            "sexo": {
+              "type": "string"
+          }        
         }
+      },
+      "Pessoa_Enderecos":{
+        "type": "object",
+        "properties": {
+            "nome": {
+                "type": "string"
+            },
+            "rg": {
+                "type": "string"
+            },
+            "cpf": {
+              "type": "string"
+          },
+          "data_nascimento": {
+            "type": "number"
+        },
+        "sexo": {
+          "type": "string"
+      },
+      "logradouro":{
+        "type": "string"
+      },
+      "numero":{
+        "type": "number"
+      },
+      "bairro":{
+        "type": "string"
+      },
+      "cidade":{
+        "type": "string"
+      },
+      "estado":{
+        "type": "string"
+      },
+      "cep":{
+        "type": "number"
+      }
     }
-}
-}
+      },
+      "Enderecos": {
+        "type": "object",
+        "properties": {
+            "logradouro":{
+                "type": "string"
+              },
+              "numero":{
+                "type": "number"
+              },
+              "bairro":{
+                "type": "string"
+              },
+              "cidade":{
+                "type": "string"
+              },
+              "estado":{
+                "type": "string"
+              },
+              "cep":{
+                "type": "number"
+              }
+        }
+      },
+      "Pessoa_Telefones":{
+        "type": "object",
+        "properties": {
+            "nome": {
+                "type": "string"
+            },
+            "rg": {
+                "type": "string"
+            },
+            "cpf": {
+              "type": "string"
+          },
+          "data_nascimento": {
+            "type": "number"
+        },
+        "sexo": {
+          "type": "string"
+      },
+      "numero":{
+        "type": "number"
+      },
+    "tipo":{
+        "type": "string"
+      }
+    }
+      },
+      "Telefones":{
+        "type": "object",
+        "properties": {
+            "numero":{
+                "type": "number"
+              },
+            "tipo":{
+                "type": "string"
+              }
+        }
+      }
+    }
+  }
+}                
