@@ -17,6 +17,7 @@ class Quartos extends Model{
 
     static associate(models){
         this.belongsTo(models.Status, {foreignKey: 'status_id', as: 'status_owner'}); //fazemos a associacao de que uma pessoa possui muitos enderecos
+        // this.hasOne(models.Reservas, {foreignKey: 'pessoa_id', as: 'quarto_owner'}); //enderco pertence a model pessoa, e passamos qual a Fk que referencia a tabela de Pessoa, mas é o nome que vc quiser dar para o relacionamento
     }
 }
 

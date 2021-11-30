@@ -6,6 +6,7 @@ const TelefonesController = require('./controllers/TelefonesController');
 const EnderecosController = require('./controllers/EnderecosController');
 const StatusController = require('./controllers/StatusController');
 const QuartosController = require('./controllers/QuartosController');
+const BeneficiosController = require('./controllers/BeneficiosController');
 
 const routes = express.Router();
 
@@ -27,6 +28,10 @@ routes.get('/quartos', QuartosController.index);
 routes.post('/quartos', QuartosController.store);
 routes.post('/quartos/:nome_quarto', QuartosController.updateStatus);
 // routes.post('/quarto/:quantia_banheiros', QuartosController.findByBanheiro);
+
+routes.get('/beneficio', BeneficiosController.index);
+routes.post('/beneficio', BeneficiosController.store);
+
 
 
 module.exports = routes;
