@@ -3,9 +3,9 @@ const { Model, DataTypes } = require('sequelize');
 class Reservas extends Model{
     static init(sequelize){
         super.init({
-            data_inicio: DataTypes.DATE,
-            data_final: DataTypes.DATE,
-            data_checkout: DataTypes.DATE,
+            data_inicio: DataTypes.DATEONLY,
+            data_final: DataTypes.DATEONLY,
+            data_checkout: DataTypes.DATEONLY,
             valor_diarias: DataTypes.DECIMAL,
             valores_beneficios: DataTypes.DECIMAL,
         }, {

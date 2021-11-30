@@ -22,21 +22,22 @@ module.exports = {
 
     async store(req, res){
         
-        const { quarto_nome} = req.params;
-
-        var beneficio_nome = req.body;
-        const { data_inicio, data_final} = req.body;  
+        // const { quarto_id } = req.params;
+        const { data_inicio, data_final, beneficio_id, quarto_id} = req.body;  
         
-        const quarto = await Quartos.findOne({where:{nome_quarto:quarto_nome}}); 
-        const beneficio = await Beneficios.findOne({where:{nome_beneficio:beneficio_nome}});        
+        const quarto = await Quartos.findOne({where:{id:quarto_id}}); 
+        const beneficio = await Beneficios.findOne({where:{id:beneficio_id}});        
 
-        const {valor_quarto, id} = quarto;
+        const {valor_quarto} = quarto;
         const {valor_beneficio} = beneficio;   
         
-        const {data_checkout} = data_final;
+        const data_checkout = data_final;
 
-        const quarto_id = id;
-        valor_diarias = valor_quarto*(data_final-data_inicio);
+        let diferencaDatas = new Date(data_final).getTime()-new Date(data_inicio).getTime();
+        valor_diarias = valor_quarto*(Math.ceil(diferencaDatas / (1000 * 3600 * 24)));
+
+        console.log(Math.ceil(diferencaDatas / (1000 * 3600 * 24)));
+
         valores_beneficios =  valor_beneficio;                         
         
         try{

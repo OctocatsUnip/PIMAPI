@@ -37,8 +37,8 @@ routes.post('/quartos/:nome_quarto', QuartosController.updateStatus);
 routes.get('/beneficio', BeneficiosController.index);
 routes.post('/beneficio', BeneficiosController.store);
 
-routes.get('/reservas/:quarto_nome', ReservasController.index);
-routes.post('/reservas/:quarto_nome', ReservasController.store);
+routes.get('/reservas', ReservasController.index);
+routes.post('/reservas', ReservasController.store);
 
 routes.get('/funcionario/:pessoa_id', FuncionariosController.index);
 routes.post('/funcionario/:pessoa_id', FuncionariosController.store);
