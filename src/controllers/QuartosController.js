@@ -14,12 +14,20 @@ module.exports = {
         }
     },
 
-    // async findByBanheiro(req, res){
-    //     const {Quantia_banheiros} = req.params;
-    //     console.log("Teste: " , quartos);
-    //     const quartos = await Quartos.findOne({where:{Quantia_banheiros:quantia_banheiros}});
-    //     return res.json(quartos);
-    // },
+    async findByBanheiro(req, res){
+        const {quantia_banheiros, quantia_camas} = req.params;
+        const { Op } = require("sequelize");
+        const quartos = await Quartos.findAll({
+            where: {
+                [Op.and]: [
+                    { Quantia_banheiros: quantia_banheiros },
+                    { Quantia_camas: quantia_camas },
+                ]
+            }
+        })
+        return res.json(quartos);
+    },
+
 
     async store(req, res){
 
