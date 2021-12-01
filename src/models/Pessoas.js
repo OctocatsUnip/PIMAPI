@@ -19,7 +19,7 @@ class Pessoas extends Model{
         this.hasOne(models.Funcionarios, {foreignKey: 'pessoa_id', as: 'funcionario_owner'});
         this.hasOne(models.User_Cliente, {foreignKey: 'pessoa_id', as: 'user_cliente_owner'});
 
-        Pessoas.belongsToMany(models.Reservas, { through: 'reservas_pessoas', as: 'PessoasOwner', foreignKey: 'pessoa_id'});
+        Pessoas.belongsToMany(models.Reservas, { through: 'Reservas_Pessoas', as: 'ReservasOwner', foreignKey: 'pessoa_id'});
     }
 }
 

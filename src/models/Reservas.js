@@ -17,7 +17,7 @@ class Reservas extends Model{
         this.belongsTo(models.Quartos, {foreignKey: 'quarto_id', as: 'quarto_owner'}); //enderco pertence a model pessoa, e passamos qual a Fk que referencia a tabela de Pessoa, mas é o nome que vc quiser dar para o relacionamento
         this.belongsToMany(models.Beneficios, { foreignKey: 'reserva_id', through: 'reservas_beneficios', as: 'beneficio_estao_reservas'});
 
-        Reservas.belongsToMany(models.Pessoas, { foreignKey: 'reserva_id', through: 'reservas_pessoas', as: 'ReservasOwner'});
+        Reservas.belongsToMany(models.Pessoas, { foreignKey: 'reserva_id', through: 'Reservas_Pessoas', as: 'PessoasOwner'});
     }
 }
 

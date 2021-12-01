@@ -676,6 +676,134 @@
                 }
             }
          }
+    },
+    "/beneficio":{
+        "get":{
+            "summary": "Trazer beneficios",
+            "description": "Traz beneficios",
+            "tags": ["Beneficios"],
+            "responses": {
+                "200":{
+                    "description": "OK",
+                    "content": {
+                        "application/json":{
+                            "schema":{
+                             "type": "array",
+                             "items":{
+                                "$ref": "#/components/schemas/Beneficios"
+                             }
+                            }
+                        }
+                    }
+                }
+        }
+        },
+        "post":{
+            "summary" : "Cadastro de beneficios",
+            "description": "Rota para cadastro de beneficios",
+            "tags": ["Beneficios"],
+            "requestBody":{
+                "content": {
+                    "application/json":{
+                        "schema": {
+                             "$ref": "#/components/schemas/Beneficios"
+                        },
+                        "examples": {
+                             "pessoa" : {
+                                 "value":{
+                                     "nome_beneficio": "almoço",
+                                     "valor_beneficio": 250                                     
+                                 }
+                             }
+                        }
+                    }
+                }
+            },
+            "responses": {
+                "200":{
+                    "description": "OK",
+                    "content": {
+                        "application/json":{
+                            "schema":{
+                             "type": "object",
+                             "$ref": "#/components/schemas/Beneficios"
+                            }
+                        }
+                    }
+                }
+            }
+         }
+    },
+    "/reservas/:quarto_id": {
+        "get":{
+            "summary": "Trazer reserva por quarto",
+            "description": "Traz reserva por quarto",
+            "tags": ["Reservas"],
+            "parameters": [{
+                "in": "path",
+                "name": "quarto_id",
+                "required": true,
+                "schema":{
+                    "type":"integer",
+                    "minimum": 1
+                }
+            }],
+            "responses": {
+                "200":{
+                    "description": "OK",
+                    "content": {
+                        "application/json":{
+                            "schema":{
+                             "type": "array",
+                             "items":{
+                                "$ref": "#/components/schemas/ReservasPessoas"
+                             }
+                            }
+                        }
+                    }
+                }
+        }
+        }        
+    },
+    "/reservas": {
+        "post": {
+            "summary" : "Cadastro de Reservas",
+            "description": "Rota para cadastro de Reservas",
+            "tags": ["Reservas"],            
+            "requestBody":{
+                "content": {
+                    "application/json":{
+                        "schema": {
+                             "$ref": "#/components/schemas/Reservas"
+                        },
+                        "examples": {
+                             "pessoa" : {
+                                 "value":{
+                                     "data_inicio": "20191225",
+                                     "data_final": "20191225",
+                                     "beneficio_id": 1,
+                                     "quarto_id": 1,  
+                                     "pessoas": [1, 2, 3]
+                                 }
+                             }
+                        }
+                    }
+                }
+            },
+            "responses": {
+                "200":{
+                    "description": "OK",
+                    "content": {
+                        "application/json":{
+                            "schema":{
+                             "type": "object",
+                             "$ref": "#/components/schemas/ReservasPessoas"
+                            }
+                        }
+                    }
+                }
+            }
+        }
     }
   },
   
@@ -922,6 +1050,74 @@
   "senha":{
     "type": "string"
   }  
+    }
+  },
+  "Beneficios":{
+    "type": "object",
+    "properties": {
+        "nome_beneficio":{
+            "type": "string"
+          },
+          "valor_beneficio":{
+            "type": "number"
+          }
+    }
+  },
+  "ReservasPessoas":{
+    "type": "object",
+    "properties": {
+        "data_inicio":{
+            "type": "number"
+          },
+          "data_final":{
+            "type": "number"
+          },
+          "data_checkout":{
+            "type": "number"
+          },
+          "valor_diarias":{
+            "type": "number"
+          },
+          "valores_beneficios":{
+            "type": "number"
+          },
+          "nome": {
+            "type": "string"
+        },
+        "rg": {
+            "type": "string"
+        },
+        "cpf": {
+          "type": "string"
+      },
+      "data_nascimento": {
+        "type": "number"
+    },
+    "sexo": {
+      "type": "string"
+  }
+
+
+    } 
+  },
+  "Reservas":{
+    "type": "object",
+    "properties": {
+        "data_inicio":{
+            "type": "number"
+          },
+          "data_final":{
+            "type": "number"
+          },
+          "beneficio_id":{
+            "type": "number"
+          },
+          "quarto_id":{
+            "type": "number"
+          },
+          "pessoas":{
+            "type": "array"
+          }
     }
   }
 

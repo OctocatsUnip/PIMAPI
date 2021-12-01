@@ -10,19 +10,19 @@ module.exports = {
 
             const { quarto_id} = req.params;
 
-            const reserva = await Reservas.findOne(
-                {
-                    where:{quarto_id:quarto_id},
-                    include: [
-                        {
-                            model: Pessoas,
-                            as: 'ReservasOwner',
-                            through: 'reservas_pessoas',
-                        }
-                    ]
+            const reserva = await Reservas.findAll({                
+                include: [
+                    {
+                        model: Pessoas,
+                        as: 'PessoasOwner',
+                        through: { attributes: [] },
+                    }
+                ]                
             });
 
-            return res.json(reserva);
+            const result = reserva.filter((item) => item.quarto_id == quarto_id);
+
+            return res.json(result);
         } catch(err){
             console.log(err);
         }
@@ -52,16 +52,11 @@ module.exports = {
             const reserva = await Reservas.create({data_inicio, data_final, data_checkout, valor_diarias, valores_beneficios, quarto_id});            
 
             reserva.setPessoasOwner(pessoas);
-            console.log(pessoas);
-            // reserva.setBeneficios(beneficios)
+            console.log(pessoas);                        
 
             return res.json(reserva);
         }catch(err){
             console.log(err);
         }
     },
-
-    async addHospede(req, res){
-
-    }
 }
