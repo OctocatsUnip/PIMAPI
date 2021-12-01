@@ -31,13 +31,11 @@ module.exports = {
     async store(req, res){
         
         // const { quarto_id } = req.params;
-        const { data_inicio, data_final, beneficio_id, quarto_id, pessoas} = req.body;  
+        const { data_inicio, data_final, valores_beneficios, quarto_id, pessoas} = req.body;  
         
-        const quarto = await Quartos.findOne({where:{id:quarto_id}}); 
-        const beneficio = await Beneficios.findOne({where:{id:beneficio_id}});        
+        const quarto = await Quartos.findOne({where:{id:quarto_id}});      
 
-        const {valor_quarto} = quarto;
-        const {valor_beneficio} = beneficio;   
+        const {valor_quarto} = quarto;  
         
         const data_checkout = data_final;
 
@@ -45,8 +43,7 @@ module.exports = {
         valor_diarias = valor_quarto*(Math.ceil(diferencaDatas / (1000 * 3600 * 24)));
 
         console.log(Math.ceil(diferencaDatas / (1000 * 3600 * 24)));
-
-        valores_beneficios =  valor_beneficio;                         
+                        
         
         try{
             const reserva = await Reservas.create({data_inicio, data_final, data_checkout, valor_diarias, valores_beneficios, quarto_id});            

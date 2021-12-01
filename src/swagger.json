@@ -781,7 +781,7 @@
                                  "value":{
                                      "data_inicio": "20191225",
                                      "data_final": "20191225",
-                                     "beneficio_id": 1,
+                                     "valores_beneficios": 3500,
                                      "quarto_id": 1,  
                                      "pessoas": [1, 2, 3]
                                  }
@@ -1109,7 +1109,7 @@
           "data_final":{
             "type": "number"
           },
-          "beneficio_id":{
+          "valores_beneficios":{
             "type": "number"
           },
           "quarto_id":{
