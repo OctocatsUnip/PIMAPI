@@ -45,6 +45,7 @@ routes.post('/funcionario/:pessoa_id', FuncionariosController.store);
 
 routes.get('/user_sistema/:funcionario_id', UserSistemaController.index);
 routes.post('/user_sistema/:funcionario_id', UserSistemaController.store);
+routes.get('/user_sistema', UserSistemaController.getUsers);
 
 routes.get('/user_cliente/:pessoa_id', UserClienteController.index);
 routes.post('/user_cliente/:pessoa_id', UserClienteController.store);

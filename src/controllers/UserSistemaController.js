@@ -13,6 +13,14 @@ module.exports = {
         return res.json(funcionario);
     },
 
+    
+    async getUsers(req, res){        
+
+        const usuarios = await UserSistema.findAll();
+
+        return res.json(usuarios);
+    },
+
     async store(req, res){
         try{
          
