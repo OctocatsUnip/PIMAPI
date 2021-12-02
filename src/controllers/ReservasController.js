@@ -28,16 +28,16 @@ module.exports = {
         }
     },
 
-    async index(req, res){
-        try{
+    // async index(req, res){
+    //     try{
 
-            const reservas = await Reservas.findAll();
+    //         const reservas = await Reservas.findAll();
 
-            return res.json(reservas);
-        } catch(err){
-            console.log(err);
-        }
-    },
+    //         return res.json(reservas);
+    //     } catch(err){
+    //         console.log(err);
+    //     }
+    // },
 
     async store(req, res){
         
