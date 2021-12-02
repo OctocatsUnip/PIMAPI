@@ -38,6 +38,7 @@ routes.get('/beneficio', BeneficiosController.index);
 routes.post('/beneficio', BeneficiosController.store);
 
 routes.get('/reservas/:quarto_id', ReservasController.index);
+routes.get('/reservas', ReservasController.index);
 routes.post('/reservas', ReservasController.store);
 
 routes.get('/funcionario/:pessoa_id', FuncionariosController.index);
