@@ -15,12 +15,6 @@ module.exports = {
         }
     },
 
-    async findByCpf(req, res) {
-        const { cpf } = req.params;
-        const pessoas = await Pessoas.findOne({ where: { cpf: cpf } });
-        return res.json(pessoas);
-    },
-
     async findPessoaData(req, res) {
         const { cpf } = req.params;
         const pessoas = await Pessoas.findOne({
@@ -34,10 +28,23 @@ module.exports = {
             ],
             where: {
                 cpf: cpf
-            }
-        });
-
+            }}
+        )
         return res.json(pessoas);
+    },
+
+    async findByCpf(req, res) {
+        try {
+            const { cpf } = req.params;
+            const pessoas = await Pessoas.findOne({ where: { cpf: cpf } });
+            if (!cpf) {
+                return res.status(400).json({ error: 'person not found' });
+            }
+            return res.json(pessoas);
+        } catch (err) {
+            console.log(err);
+        }
+
     },
 
     //vai armazenar um usuario de forma assincrona a aplicação
