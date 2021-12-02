@@ -17,6 +17,7 @@ const routes = express.Router();
 routes.get('/pessoas', PessoasController.index);
 routes.post('/pessoas', PessoasController.store);
 routes.get('/pessoas/:cpf', PessoasController.findByCpf);
+routes.get('/dados_pessoas/:cpf', PessoasController.findPessoaData);
 
 routes.post('/pessoas/telefones/:pessoa_id', TelefonesController.store);
 routes.get('/pessoas/telefones/:pessoa_id', TelefonesController.index);
