@@ -18,6 +18,7 @@ routes.get('/pessoas', PessoasController.index);
 routes.post('/pessoas', PessoasController.store);
 routes.get('/pessoas/:cpf', PessoasController.findByCpf);
 routes.get('/dados_pessoas/:cpf', PessoasController.findPessoaData);
+routes.get('/lista_dados_pessoas', PessoasController.findAllPessoaData);
 
 routes.post('/pessoas/telefones/:pessoa_id', TelefonesController.store);
 routes.get('/pessoas/telefones/:pessoa_id', TelefonesController.index);
@@ -39,7 +40,7 @@ routes.get('/beneficio', BeneficiosController.index);
 routes.post('/beneficio', BeneficiosController.store);
 
 routes.get('/reservas/:quarto_id', ReservasController.index);
-routes.get('/reservas', ReservasController.index);
+routes.get('/reservas', ReservasController.AllReserve);
 routes.post('/reservas', ReservasController.store);
 
 routes.get('/funcionario/:pessoa_id', FuncionariosController.index);

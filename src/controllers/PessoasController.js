@@ -17,8 +17,8 @@ module.exports = {
 
     async findPessoaData(req, res) {
         const { cpf } = req.params;
-        const pessoas = await Pessoas.findOne({
-            attributes: ['nome', 'cpf'],
+        const pessoas = await Pessoas.findAll({
+            attributes: ['id', 'nome', 'cpf'],
             include: [
                 {
                     model: Telefones,
@@ -28,8 +28,23 @@ module.exports = {
             ],
             where: {
                 cpf: cpf
-            }}
-        )
+            }
+        })
+        return res.json(pessoas);
+    },
+
+    async findAllPessoaData(req, res) {
+
+        const pessoas = await Pessoas.findAll({
+            attributes: ['id', 'nome', 'cpf'],
+            include: [
+                {
+                    model: Telefones,
+                    attributes: ['numero'],
+                    association: 'telefone_owner'
+                },
+            ]
+        })
         return res.json(pessoas);
     },
 
