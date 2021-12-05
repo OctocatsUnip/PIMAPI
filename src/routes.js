@@ -18,6 +18,7 @@ routes.get('/pessoas', PessoasController.index);
 routes.post('/pessoas', PessoasController.store);
 routes.get('/pessoas/:cpf', PessoasController.findByCpf);
 routes.get('/dados_pessoas/:cpf', PessoasController.findPessoaData);
+routes.get('/dados_pessoas_detalhes/:cpf', PessoasController.findPessoaDetails);
 routes.get('/lista_dados_pessoas', PessoasController.findAllPessoaData);
 
 routes.post('/pessoas/telefones/:pessoa_id', TelefonesController.store);

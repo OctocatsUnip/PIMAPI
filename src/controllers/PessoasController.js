@@ -1,4 +1,5 @@
 //controller lidam com as requisições e devolvem para o front uma resposta
+const Enderecos = require('../models/Enderecos');
 const Pessoas = require('../models/Pessoas');
 const Telefones = require('../models/Telefones');
 
@@ -18,12 +19,40 @@ module.exports = {
     async findPessoaData(req, res) {
         const { cpf } = req.params;
         const pessoas = await Pessoas.findAll({
-            attributes: ['id', 'nome', 'cpf'],
+            attributes: ['id', 'nome', 'cpf', 'rg', 'data_nascimento', 'sexo'],
             include: [
                 {
                     model: Telefones,
                     attributes: ['numero'],
                     association: 'telefone_owner'
+                },
+                {
+                    model: Enderecos,
+                    attributes: ['logradouro', 'numero', 'bairro', 'cidade', 'estado', 'cep'],
+                    association: 'endereco_owner'
+                },
+            ],
+            where: {
+                cpf: cpf
+            }
+        })
+        return res.json(pessoas);
+    },
+
+    async findPessoaDetails(req, res) {
+        const { cpf } = req.params;
+        const pessoas = await Pessoas.findOne({
+            attributes: ['id', 'nome', 'cpf', 'rg', 'data_nascimento', 'sexo'],
+            include: [
+                {
+                    model: Telefones,
+                    attributes: ['numero'],
+                    association: 'telefone_owner'
+                },
+                {
+                    model: Enderecos,
+                    attributes: ['logradouro', 'numero', 'bairro', 'cidade', 'estado', 'cep'],
+                    association: 'endereco_owner'
                 },
             ],
             where: {
