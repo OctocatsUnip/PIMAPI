@@ -4,10 +4,10 @@
 module.exports = {
 
     dialect: 'mssql',
-    host: 'srvpreprod1.novasingular.com.br',
+    host: '',
     // port: '1433',
-    username: 'sa',
-    password: 'gjP2bu845ZNnZySYv9J9fnL4T',
+    username: '',
+    password: '',
     database: 'Thay',
     define:{
         timestamps: true, //criação dos registros no banco de quando foi realizado alteração
